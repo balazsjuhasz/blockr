@@ -9,7 +9,7 @@ defmodule Blockr do
   ## Examples
 
       iex> Blockr.hello()
-      :world
+      :worlds
 
   """
   def hello do
