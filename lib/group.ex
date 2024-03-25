@@ -23,19 +23,7 @@ defmodule Group do
     points |> Enum.map(&Point.flip_top_bottom/1)
   end
 
-  def rotate(points, 0) do
-    points |> Enum.map(&Point.rotate(&1, 0))
-  end
-
-  def rotate(points, 90) do
-    points |> Enum.map(&Point.rotate(&1, 90))
-  end
-
-  def rotate(points, 180) do
-    points |> Enum.map(&Point.rotate(&1, 180))
-  end
-
-  def rotate(points, 270) do
-    points |> Enum.map(&Point.rotate(&1, 270))
+  def rotate(points, degrees) do
+    points |> Enum.map(&Point.rotate(&1, degrees))
   end
 end
