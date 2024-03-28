@@ -46,4 +46,8 @@ defmodule Point do
   def rotate(point, 270) do
     point |> swap |> flip_top_bottom
   end
+
+  def paint(point, color) do
+    {point, color}
+  end
 end

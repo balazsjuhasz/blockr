@@ -1,6 +1,6 @@
 defmodule Tetromino do
   defstruct name: :i,
-            location: {1, 3},
+            location: {0, 0},
             rotation: 0,
             color: :green
 
@@ -36,6 +36,7 @@ defmodule Tetromino do
     end
     |> Group.rotate(tetro.rotation)
     |> Group.move_to(tetro.location)
-    |> Group.paint(tetro.color)
+
+    # |> Group.paint(tetro.color)
   end
 end

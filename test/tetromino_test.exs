@@ -2,13 +2,13 @@ defmodule TetrominoTest do
   use ExUnit.Case
 
   test "Create new Tetromino" do
-    assert Tetromino.new() == %Tetromino{name: :i, location: {1, 3}, rotation: 0, color: :green}
+    assert Tetromino.new() == %Tetromino{name: :i, location: {0, 0}, rotation: 0, color: :green}
   end
 
   test "Left" do
     assert Tetromino.new() |> Tetromino.left() == %Tetromino{
              name: :i,
-             location: {1, 2},
+             location: {0, -1},
              rotation: 0,
              color: :green
            }
@@ -17,7 +17,7 @@ defmodule TetrominoTest do
   test "Right" do
     assert Tetromino.new() |> Tetromino.right() == %Tetromino{
              name: :i,
-             location: {1, 4},
+             location: {0, 1},
              rotation: 0,
              color: :green
            }
@@ -26,7 +26,7 @@ defmodule TetrominoTest do
   test "Fall" do
     assert Tetromino.new() |> Tetromino.fall() == %Tetromino{
              name: :i,
-             location: {2, 3},
+             location: {1, 0},
              rotation: 0,
              color: :green
            }
@@ -35,7 +35,7 @@ defmodule TetrominoTest do
   test "Rotate right 90" do
     assert Tetromino.new() |> Tetromino.rotate_right_90() == %Tetromino{
              name: :i,
-             location: {1, 3},
+             location: {0, 0},
              rotation: 90,
              color: :green
            }
@@ -45,7 +45,7 @@ defmodule TetrominoTest do
     assert Tetromino.new() |> Tetromino.rotate_right_90() |> Tetromino.rotate_right_90() ==
              %Tetromino{
                name: :i,
-               location: {1, 3},
+               location: {0, 0},
                rotation: 180,
                color: :green
              }
@@ -58,7 +58,7 @@ defmodule TetrominoTest do
            |> Tetromino.rotate_right_90() ==
              %Tetromino{
                name: :i,
-               location: {1, 3},
+               location: {0, 0},
                rotation: 270,
                color: :green
              }
@@ -72,7 +72,7 @@ defmodule TetrominoTest do
            |> Tetromino.rotate_right_90() ==
              %Tetromino{
                name: :i,
-               location: {1, 3},
+               location: {0, 0},
                rotation: 0,
                color: :green
              }
