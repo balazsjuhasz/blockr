@@ -3,15 +3,14 @@ defmodule TetrominoTest do
   use ExUnit.Case
 
   test "Create new Tetromino" do
-    assert Tetromino.new() == %Tetromino{name: :i, location: {0, 0}, rotation: 0, color: :green}
+    assert Tetromino.new() == %Tetromino{name: :i, location: {0, 0}, rotation: 0}
   end
 
   test "Left" do
     assert Tetromino.new() |> Tetromino.left() == %Tetromino{
              name: :i,
              location: {0, -1},
-             rotation: 0,
-             color: :green
+             rotation: 0
            }
   end
 
@@ -19,8 +18,7 @@ defmodule TetrominoTest do
     assert Tetromino.new() |> Tetromino.right() == %Tetromino{
              name: :i,
              location: {0, 1},
-             rotation: 0,
-             color: :green
+             rotation: 0
            }
   end
 
@@ -28,8 +26,7 @@ defmodule TetrominoTest do
     assert Tetromino.new() |> Tetromino.fall() == %Tetromino{
              name: :i,
              location: {1, 0},
-             rotation: 0,
-             color: :green
+             rotation: 0
            }
   end
 
@@ -37,8 +34,7 @@ defmodule TetrominoTest do
     assert Tetromino.new() |> Tetromino.rotate_right_90() == %Tetromino{
              name: :i,
              location: {0, 0},
-             rotation: 90,
-             color: :green
+             rotation: 90
            }
   end
 
@@ -47,8 +43,7 @@ defmodule TetrominoTest do
              %Tetromino{
                name: :i,
                location: {0, 0},
-               rotation: 180,
-               color: :green
+               rotation: 180
              }
   end
 
@@ -60,8 +55,7 @@ defmodule TetrominoTest do
              %Tetromino{
                name: :i,
                location: {0, 0},
-               rotation: 270,
-               color: :green
+               rotation: 270
              }
   end
 
@@ -74,8 +68,7 @@ defmodule TetrominoTest do
              %Tetromino{
                name: :i,
                location: {0, 0},
-               rotation: 0,
-               color: :green
+               rotation: 0
              }
   end
 end

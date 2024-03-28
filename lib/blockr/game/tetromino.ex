@@ -3,11 +3,14 @@ defmodule Blockr.Game.Tetromino do
 
   defstruct name: :i,
             location: {0, 0},
-            rotation: 0,
-            color: :green
+            rotation: 0
 
   def new(name \\ :i) do
     %__MODULE__{name: name}
+  end
+
+  def new_random() do
+    # new tetro in the top middle with a random shape
   end
 
   def left(tetro) do
