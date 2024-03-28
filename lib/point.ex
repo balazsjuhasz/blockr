@@ -11,9 +11,12 @@ defmodule Point do
     {row, col - 1}
   end
 
-  @spec move_right({any(), number()}) :: {any(), number()}
   def move_right({row, col}) do
     {row, col + 1}
+  end
+
+  def move_to({from_row, from_col}, {to_row, to_col}) do
+    {from_row + to_row, from_col + to_col}
   end
 
   def swap({row, col}) do
