@@ -1,4 +1,6 @@
-defmodule Tetromino do
+defmodule Blockr.Game.Tetromino do
+  alias Blockr.Game.{Group, Point}
+
   defstruct name: :i,
             location: {0, 0},
             rotation: 0,
@@ -36,7 +38,5 @@ defmodule Tetromino do
     end
     |> Group.rotate(tetro.rotation)
     |> Group.move_to(tetro.location)
-
-    # |> Group.paint(tetro.color)
   end
 end

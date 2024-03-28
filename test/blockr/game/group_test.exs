@@ -1,4 +1,5 @@
 defmodule GroupTest do
+  alias Blockr.Game.Group
   use ExUnit.Case
 
   @test_shape [{2, 3}, {2, 4}, {3, 3}, {4, 3}]

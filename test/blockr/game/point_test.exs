@@ -1,4 +1,5 @@
 defmodule PointTest do
+  alias Blockr.Game.Point
   use ExUnit.Case
 
   test "Create new point" do

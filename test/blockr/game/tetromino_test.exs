@@ -1,4 +1,5 @@
 defmodule TetrominoTest do
+  alias Blockr.Game.Tetromino
   use ExUnit.Case
 
   test "Create new Tetromino" do
