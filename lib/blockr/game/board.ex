@@ -3,10 +3,12 @@ defmodule Blockr.Game.Board do
             tetro: nil,
             walls: [],
             points: MapSet.new([]),
-            junkyard: []
+            junkyard: [],
+            game_over: false
 
   alias Blockr.Game.{Group, Tetromino}
 
+  # constructors
   def new(opts \\ []) do
     __struct__(opts)
     |> new_tetro
@@ -21,6 +23,7 @@ defmodule Blockr.Game.Board do
     %{board | tetro: Tetromino.new(name: random_name, location: {0, 3})}
   end
 
+  # reducers
   defp add_walls(board) do
     walls =
       for row <- 0..21, col <- 0..11, row in [0, 21] or col in [0, 11] do
@@ -64,8 +67,63 @@ defmodule Blockr.Game.Board do
 
     %{board | points: mapset, junkyard: board.junkyard ++ colors}
     |> add_score()
+    |> eat_completed_rows()
+    |> new_tetro()
+    |> check_game_over()
   end
 
+  def check_game_over(board) do
+    left = board.points
+
+    right =
+      board.tetro
+      |> Tetromino.to_group()
+      |> MapSet.new()
+
+    overlap_size =
+      MapSet.intersection(left, right)
+      |> MapSet.size()
+
+    %{board | game_over: overlap_size > 0}
+  end
+
+  def eat_completed_rows(board) do
+    rows = Enum.group_by(board.junkyard, fn {{row, _col}, _color} -> row end)
+
+    completed =
+      rows
+      |> Enum.filter(fn {_row, list} -> length(list) == 10 end)
+      |> Map.new()
+      |> Map.keys()
+
+    junkyard =
+      Enum.reduce(completed, rows, &eat_row/2)
+      |> Map.values()
+      |> List.flatten()
+
+    junkyard_points = Enum.map(junkyard, fn {point, _color} -> point end)
+
+    %{board | junkyard: junkyard, points: MapSet.new(board.walls ++ junkyard_points)}
+  end
+
+  defp eat_row(row_number, rows) do
+    rows
+    |> Map.delete(row_number)
+    |> Enum.map(fn {rn, list} ->
+      if row_number > rn do
+        {rn + 1, move_all_down(list)}
+      else
+        {rn, list}
+      end
+    end)
+    |> Map.new()
+  end
+
+  defp move_all_down(points) do
+    Enum.map(points, fn {{row, col}, color} -> {{row + 1, col}, color} end)
+  end
+
+  # converter
   def show(board) do
     tetro =
       board.tetro
